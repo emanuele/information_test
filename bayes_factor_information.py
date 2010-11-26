@@ -49,7 +49,7 @@ if __name__=='__main__':
 
     np.random.seed(0)
 
-    m = 10 # size of the test set
+    m = 50 # size of the test set
 
     N = 1000000 # number of iterations of Monte Carlo
 
