@@ -71,10 +71,10 @@ class bayes_error_lower_bound(object):
     not decreasing, which is a requirement of np.interp().
     """
     
-    def __init__(self, Y_entropy=1.0 , num_classes=2, cache_size=1000):
+    def __init__(self, Y_entropy=1.0 , num_classes=2, cache_size=1000, epsilon=1.0e-8):
         self.Y_entropy = Y_entropy
         self.num_classes = num_classes
-        self.bayes_error_lb_cache = np.linspace(0.5, 0.0, cache_size)
+        self.bayes_error_lb_cache = np.linspace(0.5-epsilon, 0.0+epsilon, cache_size)
         self.mutual_information_lb_cache = mutual_information_lower_bound(self.bayes_error_lb_cache)
 
     def __call__(self, mutual_information):
