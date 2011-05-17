@@ -45,13 +45,20 @@ if __name__=='__main__':
     posterior_generalization_error = M.trace('generalization error')[:]    
 
     plt.figure()
-    plt.hist(posterior_mutual_information, bins=50)
-    plt.title('$p(I(X;Y)|e=%s)$' % e)
+    plt.hist(posterior_mutual_information, bins=50, normed=True)
+    plt.title('$p(I(X;Y)|e=%s,m=%s,H_1)$' % (e,m))
+    plt.xlim([0.0,1.0])
+    plt.savefig('posterior_I_e_%s_m_%s.pdf' % (e, m))
 
     plt.figure()
-    plt.hist(posterior_Bayes_error, bins=50)
-    plt.title('$p(\epsilon_B|e=%s)$' % e)
+    plt.hist(posterior_Bayes_error, bins=50, normed=True)
+    plt.title('$p(\epsilon_B|e=%s,m=%s,H_1)$' % (e,m))
+    plt.xlim([0.0,0.5])
+    plt.savefig('posterior_epsilonB_e_%s_m_%s.pdf' % (e, m))
     
     plt.figure()
-    plt.hist(posterior_generalization_error, bins=50)
-    plt.title('$p(\epsilon|e=%s)$' % e)
+    plt.hist(posterior_generalization_error, bins=50, normed=True)
+    plt.title('$p(\epsilon|e=%s,m=%s,H_1)$' % (e,m))
+    plt.xlim([0.0,0.5])
+    plt.savefig('posterior_epsilon_e_%s_m_%s.pdf' % (e, m))
+    
