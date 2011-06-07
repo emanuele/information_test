@@ -4,6 +4,10 @@ the observed number of errors (e) on a testset of size m.
 
 See: Olivetti et al., Testing for Information with Brain Decoding,
 Pattern Recognition for NeuroImaging (PRNI), 2011.
+
+Copyright Emanuele Olivetti, 2011.
+
+This program is distributed under the GNU General Public Licence v3.0.
 """
 
 import numpy as np
