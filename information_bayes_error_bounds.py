@@ -1,6 +1,9 @@
-"""Functions and plot about the Fano's inequality:
-http://en.wikipedia.org/wiki/Fano%27s_inequality
-http://www.scholarpedia.org/article/Fano_inequality
+"""Functions and plots about the Fano's inequality and the
+Hellman-Raviv's inequality.
+
+Copyright Emanuele Olivetti, 2011.
+
+This program is distributed under the GNU General Public Licence v3.0.
 """
 
 import numpy as np
@@ -97,11 +100,15 @@ if __name__=='__main__':
 
     import matplotlib.pyplot as plt
 
+    num_classes = 2
+    Y_p = np.array([1.0/num_classes]*num_classes) # equiprobable classes
+    Y_entropy = (-Y_p * np.log2(Y_p)).sum()
+
     plt.figure()
 
     bayes_error = np.linspace(0 , 0.5 , 200)
 
-    conditional_entropy_ub = conditional_entropy_upper_bound(bayes_error)
+    conditional_entropy_ub = conditional_entropy_upper_bound(bayes_error, num_classes=num_classes)
     conditional_entropy_lb = conditional_entropy_lower_bound(bayes_error)
 
     plt.plot(bayes_error, conditional_entropy_ub, 'k-', label="Fano's inequality bound", linewidth=3)
@@ -110,8 +117,8 @@ if __name__=='__main__':
     plt.ylabel('conditional entropy : H(Y|X)')
     plt.xlabel('Bayes error')
 
-    mutual_information_lb = mutual_information_lower_bound(bayes_error)
-    mutual_information_ub = mutual_information_upper_bound(bayes_error)
+    mutual_information_lb = mutual_information_lower_bound(bayes_error, num_classes=num_classes, Y_entropy=Y_entropy)
+    mutual_information_ub = mutual_information_upper_bound(bayes_error, Y_entropy=Y_entropy)
     plt.figure()
     plt.plot(bayes_error, mutual_information_ub, 'k--', label="Hellman-Raviv bound", linewidth=3)
     plt.plot(bayes_error, mutual_information_lb, 'k-', label="Fano's inequality bound", linewidth=3)
@@ -121,7 +128,7 @@ if __name__=='__main__':
 
     mi = np.linspace(0,1,200)
     
-    belb=bayes_error_lower_bound()
+    belb=bayes_error_lower_bound(Y_entropy=Y_entropy, num_classes=num_classes)
     be_lb = belb(mi)
     be_ub = bayes_error_upper_bound(mi)
 
