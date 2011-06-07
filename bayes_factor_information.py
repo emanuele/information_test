@@ -1,3 +1,14 @@
+"""Bayes factor about the presence of stimuli-related information
+within brain data.
+
+See: Olivetti et al., Testing for Information with Brain Decoding,
+Pattern Recognition for NeuroImaging (PRNI), 2011.
+
+Copyright Emanuele Olivetti, 2011.
+
+This program is distributed under the GNU General Public Licence v3.0.
+"""
+
 import numpy as np
 import information_bayes_error_bounds as ibeb
 import binomial_test
@@ -51,7 +62,7 @@ if __name__=='__main__':
 
     m = 50 # size of the test set
 
-    N = 1000000 # number of iterations of Monte Carlo
+    N = 1e6 # number of iterations of Monte Carlo
 
     p_value = 0.05
     B = Bayes_factor_lower_bound(p_value=p_value)
