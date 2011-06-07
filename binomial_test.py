@@ -1,3 +1,10 @@
+"""A simple implementation of the Binomial test.
+
+Copyright Emanuele Olivetti, 2011.
+
+This program is distributed under the GNU General Public Licence v3.0.
+"""
+
 import numpy as np
 import scipy.misc as sm
 import matplotlib.pyplot as plt
